@@ -5,7 +5,7 @@ This is a Python reimplementation of the [Spotify-Canvas-API](https://github.com
 ## 📁 Project Structure
 
 ```
-python_version/
+spoticanvas-py/
 │
 ├── main.py                     # Flask server entry point
 ├── canvas_controller.py        # Flask blueprint with canvas route
