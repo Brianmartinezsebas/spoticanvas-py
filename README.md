@@ -24,7 +24,7 @@ python_version/
 
 ```bash
 git clone https://github.com/Brianmartinezsebas/spoticanvas-py.git
-cd spotify-canvas-api-python
+cd spoticanvas-py
 ```
 
 ### 2. Install Dependencies
