@@ -23,7 +23,7 @@ python_version/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/spotify-canvas-api-python.git
+git clone https://github.com/Brianmartinezsebas/spoticanvas-py.git
 cd spotify-canvas-api-python
 ```
 
@@ -48,7 +48,6 @@ Create a `.env` file in the root directory with the following:
 
 ```
 SP_DC=your_sp_dc_cookie_here
-PORT=3000
 ```
 
 > 🔒 Your `sp_dc` cookie can be extracted from your Spotify web session (used for authentication).
@@ -67,19 +66,7 @@ http://localhost:3000
 
 ## 📡 API Usage
 
-### POST `/canvas`
-
-**Request body:**
-
-```json
-{
-  "tracks": [
-    {
-      "track_uri": "spotify:track:YOUR_TRACK_ID"
-    }
-  ]
-}
-```
+### GET `/api/canvas/?trackId=`
 
 **Response:**
 
@@ -102,5 +89,5 @@ This project is for educational purposes and follows the same guidelines as the 
 
 ---
 
-**Author:** YourNameHere  
+**Author:** Xer0  
 Forked from [Paxsenix0](https://github.com/Paxsenix0)
