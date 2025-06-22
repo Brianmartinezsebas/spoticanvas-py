@@ -72,6 +72,26 @@ http://localhost:3000
 
 A JSON object containing canvas URLs or an error message.
 
+```json
+{
+  "data": {
+    "canvases": [
+      {
+        "artist": {
+          "artistImgUrl": "https://i.scdn.co/image/ab6761610000f1788bde168596b92de17fdfcc6d",
+          "artistName": "ACRU",
+          "artistUri": "spotify:artist:0bYQe0JDIjxkSHQoXlfngl"
+        },
+        "canvasUri": "spotify:canvas:3CWsGNVKham58Yqf1ofUu8",
+        "canvasUrl": "https://canvaz.scdn.co/upload/artist/0bYQe0JDIjxkSHQoXlfngl/video/773556b29e1f4827ba11cfcd741ac8d4.cnvs.mp4",
+        "id": "773556b29e1f4827ba11cfcd741ac8d4",
+        "trackUri": "spotify:track:2RsQG67mE9to2O6BS9QRbY"
+      }
+    ]
+  }
+}
+```
+
 ## 🛠 Requirements
 
 - Python 3.8+
