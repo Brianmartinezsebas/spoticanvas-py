@@ -1,0 +1,6 @@
+Flask
+requests
+python-dotenv
+pyotp
+protobuf
+googleapis-common-protos
