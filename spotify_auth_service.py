@@ -11,21 +11,21 @@ SP_DC = os.getenv("SP_DC")
 def user_agent():
     return "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
 
-def hex_to_base32(hex_str):
-    b = bytes.fromhex(hex_str)
-    b32 = base64.b32encode(b).decode("utf-8").replace("=", "")
-    return b32
+def generate_totp_secret():
+    data = [37, 84, 32, 76, 87, 90, 87, 47, 13, 75, 48, 54, 44, 28, 19, 21, 22]
+    mapped_data = [value ^ ((index % 33) + 9) for index, value in enumerate(data)]
+    hex_data = ''.join(map(str, mapped_data)).encode('utf-8').hex()
+    return base64.b32encode(bytes.fromhex(hex_data)).decode('utf-8').rstrip('=')
 
 def generate_totp(timestamp):
-    secret_hex = "35353037313435383533343837343939353932323438363330333239333437"
-    secret_b32 = hex_to_base32(secret_hex)
+    secret_b32 = generate_totp_secret()
     totp = pyotp.TOTP(secret_b32, digits=6, interval=30)
     return totp.at(int(timestamp // 1000))
 
 def get_server_time():
     try:
         resp = requests.get(
-            "https://open.spotify.com/server-time",
+            "https://open.spotify.com/api/server-time",
             headers={
                 "User-Agent": user_agent(),
                 "Origin": "https://open.spotify.com/",
@@ -48,15 +48,11 @@ def generate_auth_payload(reason, product_type):
         "reason": reason,
         "productType": product_type,
         "totp": generate_totp(local_time),
-        "totpVer": "5",
-        "totpServer": generate_totp(server_time // 30),
-        "sTime": str(server_time),
-        "cTime": str(local_time),
-        "buildVer": "web-player_2025-03-20_1742497479926_93656b9",
-        "buildDate": "2025-03-20"
+        "totpVer": "8",
+        "totpServer": generate_totp(server_time // 30)
     }
 
-def get_token(reason="init", product_type="web-player"):
+def get_token(reason="init", product_type="mobile-web-player"):
     payload = generate_auth_payload(reason, product_type)
     url = "https://open.spotify.com/api/token"
     resp = requests.get(
