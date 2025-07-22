@@ -12,7 +12,7 @@ def user_agent():
     return "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
 
 def generate_totp_secret():
-    data = [37, 84, 32, 76, 87, 90, 87, 47, 13, 75, 48, 54, 44, 28, 19, 21, 22]
+    data = [70, 60, 33, 57, 92, 120, 90, 33, 32, 62, 62, 55, 126, 93, 66, 35, 108, 68]
     mapped_data = [value ^ ((index % 33) + 9) for index, value in enumerate(data)]
     hex_data = ''.join(map(str, mapped_data)).encode('utf-8').hex()
     return base64.b32encode(bytes.fromhex(hex_data)).decode('utf-8').rstrip('=')
